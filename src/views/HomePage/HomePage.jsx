@@ -1,11 +1,12 @@
 import React from 'react'
 import './HomePage.css'
 
+import Header from '../../components/Header'
+
 const HomePage = () =>{
 	return (
 		<div className="HomePage">
-			<h1>Home Page</h1>
-			{/* Header  */}
+			<Header />
 
 			{/* LateralNavBar */}
 

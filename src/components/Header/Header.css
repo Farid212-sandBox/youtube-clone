@@ -1,0 +1,77 @@
+.Header__container{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.Header__container__start,
+.header__container__center,
+.Header__container__end{
+  display: flex;
+  align-items: center;
+}
+
+/* start */
+
+/* center */
+
+.Header__container__center{
+  display: flex;
+  align-items: center;
+}
+.Header__container__center .Header__Yt__Section{
+  margin: 0 0 0 40px;
+  padding: 0 4px;
+  flex: 1;
+  flex-basis: 1e-9px;
+}
+
+.Header__container__center .Header__Yt__Section__Form{
+  display: flex;
+  flex: 1;
+  flex-basis: 1e-9px;
+  flex-direction: row;
+}
+
+.Header__container__center .Header__searchSection__container{
+  position: relative;
+  align-items: center;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-right: none;
+  border-radius: 2px 0 0 2px;
+  box-shadow: inset 0 1px 2px #eee;
+  color: black;
+  padding: 2px 6px;
+  flex: 1;
+  flex-basis: 1e-9px;
+  display: flex;
+  flex-direction: row;
+}
+
+.Header__container__center .Header__SearchIcon{
+  cursor: pointer;
+  width: 65px;
+  border: solid 1px lightgray;
+  background-color: white;
+  border-radius: 0 2px 2px 0;
+  margin: 0;
+}
+
+/* end */
+
+.Header__container__end__SignInButton{
+  display: flex;
+  align-items: center;
+  border: 1px solid #064fd4;
+  padding: 5px 11px;
+  cursor: pointer;
+}
+
+.Header__container__end__SignInButtonText{
+  color: #064fd4;
+}
+
+@@media screen and (max-width: 600px) {
+
+}

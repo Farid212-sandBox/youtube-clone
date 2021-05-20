@@ -2,18 +2,23 @@ import React, { useState } from 'react'
 import clsx from 'clsx'
 import './Header.css'
 
+// Local components
+import Tag from '../Tag'
+
 // MUI components
 import {
   AppBar,
   Toolbar,
   Typography,
-  Button,
   IconButton,
-  MenuButton,
   InputBase,
   Drawer,
 	Divider,
-	List
+	List,
+  CssBaseline,
+  Container,
+  Grid,
+  Box
 } from '@material-ui/core'
 import {
   Menu as MenuIcon,
@@ -22,7 +27,6 @@ import {
   Apps as AppsIcon,
   MoreVert as MoreVertIcon,
   AccountCircleRounded as AccountCircleRoundedIcon,
-  ChevronLeft as ChevronLeftIcon
 } from '@material-ui/icons'
 import YouTubeIcon from '@material-ui/icons/YouTube';
 
@@ -58,17 +62,42 @@ const useStyles = makeStyles((theme)=>({
     padding: '0 8px',
     ...theme.mixins.toolbar,
   },
+  colorBlack: {
+    color: 'black'
+  },
+  hideOnMobile: {
+    [theme.breakpoints.down("xs")]: {
+      display: 'none !important'
+    }
+  },
+  dFlex: {
+    display: 'flex',
+  },
+  alignCenter: {
+    alignItems: 'center'
+  },
+  Header__container__end__SignInButton: {
+    display: 'flex',
+    alignItems: 'center',
+    border: '1px solid #064fd4',
+    padding: '5px 11px',
+    cursor: 'pointer',
+    [theme.breakpoints.down("xs")]: {
+      display: 'none !important'
+    }
+  }
 }))
 
 const Header = () => {
   const classes = useStyles()
-	const[open, setOpen] = useState(true)
+	const[open, setOpen] = useState(false)
 
 	const handleDrawerIsOpen = () =>{
 		setOpen(!open)
 	}
   return (
     <div className="Header">
+      <CssBaseline />
       <AppBar position="static" color="white">
         <Toolbar>
           <div className="Header__container">
@@ -76,10 +105,12 @@ const Header = () => {
               <IconButton>
                 <MenuIcon onClick={handleDrawerIsOpen}/>
               </IconButton>
-              <YouTubeIcon style={{color: "red"}} />
-              <Typography variant="h6">
-                YouTube-Clone
-              </Typography>
+              <div  className={clsx(classes.dFlex, classes.alignCenter, classes.hideOnMobile)}>
+                <YouTubeIcon style={{color: "red"}}/>
+                <Typography variant="h6">
+                  YouTube-Clone
+                </Typography>
+              </div>
             </div>
             <div className="Header__container__center">
               <yt-searchbox className="Header__Yt__Section">
@@ -99,12 +130,12 @@ const Header = () => {
             </div>
             <div className="Header__container__end">
               <IconButton>
-                <AppsIcon  style={{color: "black"}}/>
+                <AppsIcon className={classes.colorBlack}/>
               </IconButton>
               <IconButton>
-                <MoreVertIcon  style={{color: "black"}}/>
+                <MoreVertIcon className={classes.colorBlack}/>
               </IconButton>
-              <div className="Header__container__end__SignInButton">
+              <div className={classes.Header__container__end__SignInButton} >
                 <AccountCircleRoundedIcon style={{color: "#064fd4"}}/>
                 <div className="Header__container__end__SignInButtonText">
                   SIGN IN
@@ -135,6 +166,12 @@ const Header = () => {
         }
 
 			</Drawer>
+      <main>
+        <div />
+        <Container>
+          <Tag />
+        </Container>
+      </main>
     </div>
   )
 }

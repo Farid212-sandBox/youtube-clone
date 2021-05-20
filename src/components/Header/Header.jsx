@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import clsx from 'clsx'
 import './Header.css'
 
 // MUI components
@@ -9,7 +10,10 @@ import {
   Button,
   IconButton,
   MenuButton,
-  InputBase
+  InputBase,
+  Drawer,
+	Divider,
+	List
 } from '@material-ui/core'
 import {
   Menu as MenuIcon,
@@ -18,10 +22,51 @@ import {
   Apps as AppsIcon,
   MoreVert as MoreVertIcon,
   AccountCircleRounded as AccountCircleRoundedIcon,
+  ChevronLeft as ChevronLeftIcon
 } from '@material-ui/icons'
 import YouTubeIcon from '@material-ui/icons/YouTube';
 
+import { mainListItems, secondListItems } from '../ListItems'
+
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme)=>({
+	drawerPaper: {
+    position: 'relative',
+    whiteSpace: 'nowrap',
+    width: 240,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  drawerPaperClose: {
+    overflowX: 'hidden',
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    width: theme.spacing(7),
+    [theme.breakpoints.up('sm')]: {
+      width: theme.spacing(9),
+    },
+  },
+	toolbarIcon: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: '0 8px',
+    ...theme.mixins.toolbar,
+  },
+}))
+
 const Header = () => {
+  const classes = useStyles()
+	const[open, setOpen] = useState(true)
+
+	const handleDrawerIsOpen = () =>{
+		setOpen(!open)
+	}
   return (
     <div className="Header">
       <AppBar position="static" color="white">
@@ -29,7 +74,7 @@ const Header = () => {
           <div className="Header__container">
             <div className="Header__container__start">
               <IconButton>
-                <MenuIcon />
+                <MenuIcon onClick={handleDrawerIsOpen}/>
               </IconButton>
               <YouTubeIcon style={{color: "red"}} />
               <Typography variant="h6">
@@ -70,6 +115,26 @@ const Header = () => {
         </Toolbar>
 
       </AppBar>
+      <Drawer
+				variant="permanent"
+				classes={{
+					paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+				}}
+				open={open}
+			>
+				<Divider />
+				<List>{mainListItems}</List>
+				<Divider />
+        {
+          open ?
+          <List>
+            {secondListItems}
+          </List>
+          :
+          null
+        }
+
+			</Drawer>
     </div>
   )
 }

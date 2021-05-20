@@ -4,6 +4,7 @@ import './Header.css'
 
 // Local components
 import Tag from '../Tag'
+import ToDoList from '../ToDoList'
 
 // MUI components
 import {
@@ -168,8 +169,12 @@ const Header = () => {
 			</Drawer>
       <main>
         <div />
-        <Container>
-          <Tag />
+        <Container style={{display: 'flex', justifyContent: 'flex-end'}}>
+          <div>
+            <Tag />
+            <h1>To do:</h1>
+            <ToDoList />
+          </div>
         </Container>
       </main>
     </div>

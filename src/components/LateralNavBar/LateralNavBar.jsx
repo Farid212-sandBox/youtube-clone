@@ -1,11 +1,9 @@
 import React from 'react'
-import 'LateralNavBar.css'
+import './LateralNavBar.css'
 
-const LateralNavBar = () =>{
-	return(
+export default function LateralNavBar () {
+	return (
 		<div className="LateralNavBar">
 		</div>
 	)
 }
-
-export default LateralNavBar

@@ -13,13 +13,8 @@ import {
   Typography,
   IconButton,
   InputBase,
-  Drawer,
-	Divider,
-	List,
   CssBaseline,
   Container,
-  Grid,
-  Box
 } from '@material-ui/core'
 import {
   Menu as MenuIcon,
@@ -31,31 +26,11 @@ import {
 } from '@material-ui/icons'
 import YouTubeIcon from '@material-ui/icons/YouTube';
 
-import { mainListItems, secondListItems } from '../ListItems'
 
 import { makeStyles } from '@material-ui/core/styles';
+import LateralNavBar from '../LateralNavBar/LateralNavBar'
 
 const useStyles = makeStyles((theme)=>({
-	drawerPaper: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    width: 240,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerPaperClose: {
-    overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    width: theme.spacing(7),
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9),
-    },
-  },
 	toolbarIcon: {
     display: 'flex',
     alignItems: 'center',
@@ -99,7 +74,7 @@ const Header = () => {
   return (
     <div className="Header">
       <CssBaseline />
-      <AppBar position="static" color="white">
+      <AppBar position="static" color="inherit">
         <Toolbar>
           <div className="Header__container">
             <div className="Header__container__start">
@@ -121,7 +96,7 @@ const Header = () => {
                     className="Header__searchSection__container"
                   />
                   <div className="Header__Yt__Section__searchIcon">
-                    <SearchIcon fontSize="medium" className="Header__SearchIcon"/>
+                    <SearchIcon className="Header__SearchIcon"/>
                   </div>
                 </form>
               </yt-searchbox>
@@ -147,26 +122,9 @@ const Header = () => {
         </Toolbar>
 
       </AppBar>
-      <Drawer
-				variant="permanent"
-				classes={{
-					paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-				}}
-				open={open}
-			>
-				<Divider />
-				<List>{mainListItems}</List>
-				<Divider />
-        {
-          open ?
-          <List>
-            {secondListItems}
-          </List>
-          :
-          null
-        }
 
-			</Drawer>
+      <LateralNavBar open={open}/>
+      
       <main>
         <div />
         <Container style={{display: 'flex', justifyContent: 'flex-end'}}>
